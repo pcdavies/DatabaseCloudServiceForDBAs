@@ -91,7 +91,7 @@ The Client Image is a VM that is running on Oracle's IaaS Compute service.
 
 ### **STEP 4**:  Connect to Client Image using VNC Viewer
 
--   If you do not already have a VNC Viewer installed on your computer, you will want to download a Viewer, or ask the instructor for the Real VNC Viewer executable. Run the VNC Viewer and enter the Public IP you just copied, by first appending either the display port **:443** or **:10**. Ask your instructor which port is active for this workshop. Next, click **Connect**
+-   If you do not already have a VNC Viewer installed on your computer, you will want to download a Viewer, or ask the instructor for the Real VNC Viewer executable. To run the VNC Viewer, enter the Public IP you just copied, along with appending either the display port **:443** or **:10**. Ask your instructor which port is active for this workshop. Next, click **Connect**
 
 	![](images/100/image13.png)
 
@@ -109,7 +109,7 @@ The Client Image is a VM that is running on Oracle's IaaS Compute service.
 
 ### **STEP 5**:  Login to your Oracle Cloud account
 
--   From within the VNC Session open **Chrome**
+-   From within the VNC Session, open **Chrome**
     ![](images/100/image16.png) and go to the following URL:
 
 	https://cloud.oracle.com
@@ -275,7 +275,7 @@ In the upcoming steps you will record the IP addresses of the Virtual Machine on
 
 ### **STEP 9**:  Run the SSH configuration script to start tunnels in the background
 
-For security reasons the default Oracle Public Cloud network configuration is locked down. You have the option of opening up ports to the various servers in your environment by ether using the Compute Cloud Service console and creating/re-using protocol definitions and access rules, OR you can create SSH tunnels to the specific server/port combinations as needed. This lab and the rest of the labs require access via development tools and the browser to various admin consoles running on the cloud servers themselves.
+For security reasons, the default Oracle Public Cloud network configuration is locked down. You have the option of opening up ports to the various servers in your environment by ether using the Compute Cloud Service console and creating/re-using protocol definitions and access rules, OR you can create SSH tunnels to the specific server/port combinations as needed. This lab and the rest of the labs require access via development tools and the browser to various admin consoles running on the cloud servers themselves.
 
 In this step you will run a script that creates and configures a SSH file used to connect to your various servers. Once the script is generated, it will create SSH tunnels in the background with connections via selected ports used in this and other labs.
 
@@ -283,7 +283,11 @@ In this step you will run a script that creates and configures a SSH file used t
 
 	![](images/100/image40.png)
 
--   cd into the lab directory **cd lab**
+-   Change Directories into the lab directory 
+
+	```
+	cd lab
+	```
 
 -   Type **./setssh.sh DBONLY**
 
@@ -291,11 +295,11 @@ In this step you will run a script that creates and configures a SSH file used t
 	./setssh.sh DBONLY
 	```
 	
-	If you make an error you'll see:
+	If you make an error, you'll see:
 
 	![](images/100/image41.jpeg)
 
--   If the script runs successfully, you will enter the DB IP address obtained in Step 6. Click **OK**.
+-   If the script runs successfully, you will enter the DB IP address previoulsly obtained. Click **OK**.
 
 	![](images/100/image42.png)
 
@@ -305,7 +309,7 @@ In this step you will run a script that creates and configures a SSH file used t
 
 -   Click **OK**
 
--   You can look at the generated configuration file by type **gedit myssh** within the terminal window. Notice under the **Host AlphaDBCS** section of the config file that the DBCS IP address has been inserted in 5 areas defining LocalForward ports (1526, 443, 4848, and 5500). These ports can now be accessed locally using “localhost” in connection information or URLs.
+-   You can look at the generated configuration file by typing **gedit myssh** within the terminal window. Notice under the **Host AlphaDBCS** section of the config file that the DBCS IP address has been inserted in 5 areas defining LocalForward ports (1526, 443, 4848, and 5500). These ports can now be accessed locally using “localhost” in connection information or URLs.
 
 	Example:
 
@@ -370,7 +374,7 @@ In the previous step, SSH tunnels were started in the background to support our 
 
 ### **STEP 11**:  Access Database Monitor
 
-To gain access to the various consoles used by the Database Cloud Service you have two options. You can open up the port on which the monitor is listening, or you can create a SSH tunnels to the specific server/port combinations as needed. We have already created the SSH tunnel and that will be used to access most of the consoles.
+To gain access to the various consoles used by the Database Cloud Service you have two options. You can open up the port on which the monitor is listening, or you can create a SSH tunnels to the specific server/port combinations as needed. We have already created the SSH tunnel, and you will use that tunnel to access most of the consoles.
 
 In this step you will open the port 443 on the VM using a pre-create access rule and protocol definition.
 
@@ -418,7 +422,9 @@ In this step you will open the port 443 on the VM using a pre-create access rule
 
 -   On the browser, open a new tab, and **enter** the following **URL** to access the **EM Express** page. The first time the URL is used, it can take a minute for the console to load. **Note**: The setssh.sh script that you ran earlier in this lab created the ssh tunnel that will cause all traffic referencing localhost:5500 to actually be routed to the database cloud service.
 
-https://localhost:5500/em
+	```
+	https://localhost:5500/em
+	```
 
 ![](images/100/image63.png)
 
