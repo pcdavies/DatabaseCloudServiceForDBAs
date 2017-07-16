@@ -126,9 +126,9 @@ In this lab, you will explore some common use cases for moving your data from on
 
 -   We will now configure an SSH connection to our DBCS instance
 
-	**Name**: `Alpha01-DBCS`
+	**Name**: `Alpha01A-DBCS`
 
-	**Host**: `<public IP you obtained in lab 100>`
+	**Host**: `<Database Image public IP you obtained in lab 100>`
 
 	**Username**: `oracle`
 	
@@ -142,7 +142,7 @@ In this lab, you will explore some common use cases for moving your data from on
 
 	**Name**: `Database`
 
-	**Host**: `<Public IP you obtained in lab 100>`
+	**Host**: `<Database Image Public IP you obtained in lab 100>`
 	
 -   Select **Use specific local port** and enter **1530**
 
@@ -186,7 +186,7 @@ In this lab, you will explore some common use cases for moving your data from on
 
 ### **STEP 6**:  Copy ALPHACLONE pluggable database to the Cloud
 
--   Click on **View -> Task Progress** to open up the Task Progress window.
+-   Using the SQL Developer top menu, click on **View -> Task Progress** to open up the Task Progress window.
 
 -   In the DBA window right-click on **ALPHACLONE** and select “**Clone PDB to Oracle Cloud**”
 
@@ -212,7 +212,7 @@ In this lab, you will explore some common use cases for moving your data from on
 
 ### **STEP 7**:  Access EM Express for the Cloud database
 
--   Open Chrome by clicking the icon on the menu bar or the Desktop.
+-   Open **Chrome** by clicking the icon on the menu bar or the Desktop.
 
 	![](images/200/image33.png)
 
@@ -234,7 +234,7 @@ In this lab, you will explore some common use cases for moving your data from on
 
 ### **STEP 8**:  Plug the Alpha Clone database into the Cloud database
 
--   From the Database Home page, click the **CDB(1 PDBs)** link.
+-   From the Database Home page, click the **CDB(1 PDBs)** link located in the Status panel.
 
 	![](images/200/image36.png)
 
@@ -370,7 +370,7 @@ In this lab, you will explore some common use cases for moving your data from on
 
 **Note**: The default Data Pump directory object, DATA\_PUMP\_DIR, does not work with PDBs. Data Pump requires an explicit directory object within the PDB that is exporting or importing schemas or tables.
 
--   In the Connections Tab inside the "**On-Premise**" folder navigate to the **Alpha - PDB Directories** item, right-mouse click and select **Create Directory...**
+-   In the Connections Tab inside the "**On-Premise**" folder navigate to the **Alpha - PDB > Directories** item, right-mouse click and select **Create Directory...**
 
 	![](images/200/image58.png)
 
