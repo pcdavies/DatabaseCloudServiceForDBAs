@@ -16,17 +16,21 @@ These labs will give you a basic understanding of the Oracle Database Cloud Serv
 
 **Reference the following Lab Guides by opening their Documentation Files:**
 
-## Lab 100: Introduction to Database Cloud Services
+## Lab 100: Introduction and Database Creation
 
 **Documentation**: [CloudWorkshop\_DBCS\_100.md](CloudWorkshop\_DBCS\_100.md)
 
 ### Objectives
 
--   Create Database Cloud Service
--   SSH Configuration
--   Explore VM and Consoles
+-   Configure archive logging
+-	Configure Transparent Data Encryption (TDE - required to restore from backup to the cloud)
+-	Backup your local database to the Oracle Cloud
+-	Drop a table and then restore it from your cloud backup.
+-	Create Database Cloud Service from your on-premise backup 
+-   SSH configuration
+-   Explore VM and consoles
 
-## Lab 200: Cloud Migration
+## Lab 200: Data Migration
 
 **Documentation**: [CloudWorkshop\_DBCS\_200.md](CloudWorkshop\_DBCS\_200.md)
 
@@ -36,22 +40,23 @@ These labs will give you a basic understanding of the Oracle Database Cloud Serv
 -   Export and import a schema using SQL Developer to execute Oracle Data Pump jobs.
 -   Export and import a small collection of tables using SQL Developer.
 
-## Lab 300: Backup and Recovery Database Cloud Services
+## Lab 300: Common DBA Tasks
 
 **Documentation**: [CloudWorkshop\_DBCS\_300.md](CloudWorkshop\_DBCS\_300.md)
 
 ### Objectives
 
--   Install the Oracle Database Cloud Backup Module onto the VM image provided in the workshop. The database provided is used as our "On-Premise" example.
--   Configure RMAN to support the Oracle Database Cloud Backup Module. Then, backup the database and take a restore point to be used for  Point-In-Time-Recovery.
--   Do a destructive operation to the database and then Restore and Recover to a specific Point-In-Time.
+-   Create an instance.
+-   Maintain security access.
+-   Scale up an instance.
+-   Add a SSH Key.
 
-## Lab 400:  Database Development Cloud Services
+
+## Lab 400:  CLI/Curl Commands (Programatic Control of Services)
 
 **Documentation**: [CloudWorkshop\_DBCS\_400.md](CloudWorkshop\_DBCS\_400.md)
 
 ### Objectives
 
--   Enable APEX in the Alpha Clone PDB.
--   Create APEX REST services
--   Deploy and access an Alpha Office APEX application.
+-   Request information about DBCS related configuration and services.
+-   Create services with curl commands.
