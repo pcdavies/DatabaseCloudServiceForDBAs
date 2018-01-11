@@ -6,7 +6,7 @@ Update Dec 4, 2017
 
 This is the first of several labs that are part of the Oracle Public Cloud Database Cloud Service workshop. These labs will give you a basic understanding of the Oracle Database Cloud Service and many of the capabilities around administration and database development.
 
-This lab will walk you through setting up Transparent Data Encryption for your on-premise database and backing it up to the Oracle cloud.  You will then create a new Database Cloud Service from the backup, and then connect into the Database image using the ssh private key and familiarize yourself with the image layout. Next you will learn how to create an ssh configuration file that can be used to tunnel simultaneously multiple ports to a remote OPC instance. Using the tunnels, you will learn how to access various Database consoles.
+This lab will walk you through configuring RMAN to back up your on-premise database to the Oracle cloud.  You will then create a new Database Cloud Service from the backup, and then connect into the Database image using the ssh private key and familiarize yourself with the image layout. Next you will learn how to create an ssh configuration file that can be used to tunnel simultaneously multiple ports to a remote OPC instance. Using the tunnels, you will learn how to access various Database consoles.  Note that all Oracle Cloud Databases are configured by default with Transparent Data Encryption (TDE).  To restore an on-premise database that was backed up to the cloud it must be configured with with archivelog turned on with TDE prior to backup.  We have configured our on-premise (compute image) database with archivelog and TDE in advance to simplify the flow.  The instructions to do this are in an appendix if you wish to try this on your own 12.2 database.  Note that TDE has evolved between database versions, including between 12.1 and 12.2, and these instructions specifically relate to 12.2.
 
 This lab supports the following use cases:
 -	Migration of on-premise databases to a cloud based environment.
@@ -113,91 +113,7 @@ The Client Image is a VM that is running on Oracle's IaaS Compute service.
 
 ## Configure and Backup the Local Database to the Oracle Cloud
 
-### **STEP 5**:  Turn on Database Archivelog Mode
-
--	Open a command window
-
-	![](images/100/image15.01.png)
-
--	Enter the following commands:
-	- `source dbenv.sh`
-	- `lsnrctl start`
-	- `sqlplus sys/Alpha018_ as sysdba`
-	- `startup`
-	- `select log_mode from v$database;`
-	- `shutdown immediate`
-	- `startup mount;`
-	- `alter database archivelog;`
-	- `alter database open;`
-	- `alter pluggable database all open;`
-	- `SELECT open_mode from v$database;`
-	- `exit`
-
-	![](images/100/image15.02.png)
-
-### **STEP 6**:  Configure Transparent Data Encryption (required to instantiate DBCS from backup in cloud)
-
--	First exit out of sqlpus (in the command window) if you have not already done so (last step above).
-
--	Create TDE Wallet directory in command window
-	- `mkdir /u01/app/oracle/product/12.2/wallet`
-
-	![](images/100/image15.03.png)
-
--	Edit the sqlnet.ora file
-	- `gedit /u01/app/oracle/product/12.2/dbhome_1/network/admin/sqlnet.ora`
-
-	![](images/100/image15.04.png)
-
--	**Add the following** and then **save** (spacing does not matter):
-	
-`ENCRYPTION_WALLET_LOCATION=(SOURCE=(METHOD=FILE)(METHOD_DATA=(DIRECTORY=/u01/app/oracle/product/12.2/wallet)))`
-
-![](images/100/image15.05.png)
-
--	Open a command window and bounce the database.  **Enter the following:**
-	- `source dbenv.sh`
-	- `sqlplus sys/Alpha2018_ as sysdba`
-	- `shutdown immediate`
-	- `startup`
-	- `alter pluggable database all open;`
-	- `set linesize 300` -- this is so we can read the output easier
-	- `col wrl_parameter format a40` -- easier to read output
-	- `select * from v$encryption_wallet;`
-
-	![](images/100/image15.06.png)
-
--	Create TDE keystore and auto login keystore.
-	- `administer key management create keystore '/u01/app/oracle/product/12.2/wallet' identified by oracle;`
-	- `administer key management create auto_login keystore from keystore '/u01/app/oracle/product/12.2/wallet' identified by oracle;`
-
-	![](images/100/image15.07.png)
-
--	Open the software keystore for the password based key (screenshot does not show all of this)
-	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN IDENTIFIED BY oracle CONTAINER = ALL;`
-	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN FORCE KEYSTORE IDENTIFIED BY oracle CONTAINER = ALL;`
-	- `alter session set container=pdb$seed`
-	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN FORCE KEYSTORE identified by oracle;`
-	- `alter session set container=alphapdb`
-	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN FORCE KEYSTORE identified by oracle;`
-	- `alter session set container=pdb1`
-	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN FORCE KEYSTORE identified by oracle;`
-
-	![](images/100/image15.08.png)
-
--	Set the Software TDE Master Encryption Key.
-	- `alter session set container=cdb$root;`
-	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE;`
-	- `ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY oracle WITH BACKUP USING 'key_backup' CONTAINER = ALL;`
-	- `ADMINISTER KEY MANAGEMENT SET KEY FORCE KEYSTORE IDENTIFIED BY oracle WITH BACKUP USING 'key_backup' CONTAINER = ALL;`
-
-	![](images/100/image15.09.png)
-
--	Zip the TDE wallet.  You will need this later when creating a new instance from our cloud backup.  Return to your terminal window, exit out of SQLPlus, change your directory, and zip the wallet directory:
-	- `cd /u01/app/oracle/product/12.2`
-	- `zip -r wallet.zip wallet`
-
-	![](images/100/image15.17.png)
+**Step 5 (turn on archivelog) and step 6 (Configure Transparent Data Encryption) have already been done for you.  See Appendix below if you wish to review the steps.**
 
 ### **STEP 7**:  Use RMAN to Back Up to the Cloud
 
@@ -587,3 +503,91 @@ In this step you will open the port 443 on the VM using a pre-create access rule
 	![](images/100/image69.png)
 
 -   You are now ready to move to the next lab.
+
+## Appendix: Configure Transparent Data Encryption (TDE)
+
+### **STEP 5**:  Turn on Database Archivelog Mode
+
+-	Open a command window
+
+	![](images/100/image15.01.png)
+
+-	Enter the following commands:
+	- `source dbenv.sh`
+	- `lsnrctl start`
+	- `sqlplus sys/Alpha018_ as sysdba`
+	- `startup`
+	- `select log_mode from v$database;`
+	- `shutdown immediate`
+	- `startup mount;`
+	- `alter database archivelog;`
+	- `alter database open;`
+	- `alter pluggable database all open;`
+	- `SELECT open_mode from v$database;`
+	- `exit`
+
+	![](images/100/image15.02.png)
+
+### **STEP 6**:  Configure Transparent Data Encryption (required to instantiate DBCS from backup in cloud)
+
+-	First exit out of sqlpus (in the command window) if you have not already done so (last step above).
+
+-	Create TDE Wallet directory in command window
+	- `mkdir /u01/app/oracle/product/12.2/wallet`
+
+	![](images/100/image15.03.png)
+
+-	Edit the sqlnet.ora file
+	- `gedit /u01/app/oracle/product/12.2/dbhome_1/network/admin/sqlnet.ora`
+
+	![](images/100/image15.04.png)
+
+-	**Add the following** and then **save** (spacing does not matter):
+	
+`ENCRYPTION_WALLET_LOCATION=(SOURCE=(METHOD=FILE)(METHOD_DATA=(DIRECTORY=/u01/app/oracle/product/12.2/wallet)))`
+
+![](images/100/image15.05.png)
+
+-	Open a command window and bounce the database.  **Enter the following:**
+	- `source dbenv.sh`
+	- `sqlplus sys/Alpha2018_ as sysdba`
+	- `shutdown immediate`
+	- `startup`
+	- `alter pluggable database all open;`
+	- `set linesize 300` -- this is so we can read the output easier
+	- `col wrl_parameter format a40` -- easier to read output
+	- `select * from v$encryption_wallet;`
+
+	![](images/100/image15.06.png)
+
+-	Create TDE keystore and auto login keystore.
+	- `administer key management create keystore '/u01/app/oracle/product/12.2/wallet' identified by oracle;`
+	- `administer key management create auto_login keystore from keystore '/u01/app/oracle/product/12.2/wallet' identified by oracle;`
+
+	![](images/100/image15.07.png)
+
+-	Open the software keystore for the password based key (screenshot does not show all of this)
+	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN IDENTIFIED BY oracle CONTAINER = ALL;`
+	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN FORCE KEYSTORE IDENTIFIED BY oracle CONTAINER = ALL;`
+	- `alter session set container=pdb$seed`
+	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN FORCE KEYSTORE identified by oracle;`
+	- `alter session set container=alphapdb`
+	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN FORCE KEYSTORE identified by oracle;`
+	- `alter session set container=pdb1`
+	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN FORCE KEYSTORE identified by oracle;`
+
+	![](images/100/image15.08.png)
+
+-	Set the Software TDE Master Encryption Key.
+	- `alter session set container=cdb$root;`
+	- `ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE;`
+	- `ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY oracle WITH BACKUP USING 'key_backup' CONTAINER = ALL;`
+	- `ADMINISTER KEY MANAGEMENT SET KEY FORCE KEYSTORE IDENTIFIED BY oracle WITH BACKUP USING 'key_backup' CONTAINER = ALL;`
+
+	![](images/100/image15.09.png)
+
+-	Zip the TDE wallet.  You will need this later when creating a new instance from our cloud backup.  Return to your terminal window, exit out of SQLPlus, change your directory, and zip the wallet directory:
+	- `cd /u01/app/oracle/product/12.2`
+	- `zip -r wallet.zip wallet`
+
+	![](images/100/image15.17.png)
