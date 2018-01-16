@@ -26,14 +26,14 @@
             {
                 "number": "300",
                 "filename": "CloudWorkshop_DBCS_300.md",
-                "title": "Lab 300: Backup and Recovery",
-                "description": "Use Oracle Database Cloud Backup Module and RMAN to backup and restore your on-premise data"
+                "title": "Lab 300: DBCS Maintenance",
+                "description": "Perform some common DBA tasks such as setting up security access and scaling out your instance."
             },
             {
                 "number": "400",
                 "filename": "CloudWorkshop_DBCS_400.md",
-                "title": "Lab 400: Database Development",
-                "description": "Deploy an APEX application and access the application from your browser, smart phone or tablet"
+                "title": "Lab 400: CLI/Curl Commands (Programatic Control of Services)",
+                "description": "Review 'get' and 'put' curl commands to monitor and control DBCS cloud services"
             }
         ]
     }

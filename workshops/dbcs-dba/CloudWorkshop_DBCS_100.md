@@ -17,8 +17,8 @@ This lab supports the following use cases:
 
 ## Objectives
 
--   Configure archive logging
--	Configure Transparent Data Encryption (TDE - required to restore from backup to the cloud)
+-   Configure archive logging (this has been done for you - see Step 5 in the appendix)
+-	Configure Transparent Data Encryption (TDE - required to restore from backup to the cloud, this has also been done for you - see Step 6 in the appendix)
 -	Backup your local database to the Oracle Cloud
 -	Drop a table and then restore it from your cloud backup.
 -	Create Database Cloud Service from your on-premise backup 
