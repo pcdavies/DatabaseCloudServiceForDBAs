@@ -117,8 +117,11 @@ The Client Image is a VM that is running on Oracle's IaaS Compute service.
 
 ### **STEP 7**:  Use RMAN to Back Up to the Cloud
 
+-	Create opc_wallet directory.  Open a command window and enter the following:
+	- `mkdir /u01/app/oracle/product/12.2/opc_wallet`
+
 -	Install the Oracle Cloud Database Backup Module (previously downloaded from the [Oracle website](https://docs.oracle.com/en/cloud/paas/db-backup-cloud/csdbb/installing-oracle-database-cloud-backup-module.html#GUID-DA5B65A2-0A59-460E-8D2A-1E6E1F510A57)).  Open a terminal window and enter the following.  Be sure to replace the identity domain and password placeholder with your own:
-	- `java -jar /u01/OPCWorkshop/opc_install.jar -serviceName Storage -identityDomain <identity domain> -opcId cloud.admin -opcPass <cloud account password> -walletDir /u01/app/oracle/product/12.2/opc_wallet -libDir $ORACLE_HOME/lib -libPlatform linux64 -container oracle-data-storageg-1`
+	- `/u01/app/oracle/product/12.2/dbhome_1/jdk/bin/java -jar /u01/OPCWorkshop/opc_install.jar -serviceName Storage -identityDomain <identity domain> -opcId cloud.admin -opcPass <cloud account password> -walletDir /u01/app/oracle/product/12.2/opc_wallet -libDir $ORACLE_HOME/lib -libPlatform linux64 -container oracle-data-storageg-1`
 
 	![](images/100/image15.10.png)
 
