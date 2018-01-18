@@ -466,7 +466,7 @@ Occasionally you just want to copy one or more tables from one database to anoth
 -	Log into SQLPlus in and create the database link.  Be sure to update this command with your Identity Domain.
 	- `source dbenv.sh`
 	- `sqlplus alpha/Alpha2018_@alphapdb;`
-	- `create database link alpha_dbcs.oracledemo.com connect to alpha identified by Alpha2018_ using '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1530))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=alphapdb.<IDENTITY DOMAIN>.oraclecloud.internal)))';`
+	- `create database link alpha_dbcs.oracledemo.com connect to alpha2 identified by Alpha2018_ using '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1530))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=pdb1.<IDENTITY DOMAIN>.oraclecloud.internal)))';`
 	- `select sysdate from dual@alpha_dbcs.oracledemo.com;`
 
 	![](images/200/image73.png)
