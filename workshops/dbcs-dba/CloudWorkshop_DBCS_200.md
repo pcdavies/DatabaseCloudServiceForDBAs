@@ -364,10 +364,10 @@ This lab supports the following use cases:
 
 -	Open a new terminal window (or use the current one) and enter the following commands that will SSH to the Alpha01A-DBCS instance, create an Oracle directory, and import the data.
 	- `ssh -i /u01/OPCWorkshop/ci_opc_keys oracle@{your public IP}` -- log into your remote DBCS instance
-	- `sqlplus system/Alpha2018_@alphapdb;` -- log into system in the alphapdb
+	- `sqlplus system/Alpha2018_@pdb1;` -- log into system in the alphapdb
 	- `create user alpha2 identified by Alpha2018_;` -- create schema alpha2 (alpha already has the data from the previous lab)
 	- `grant dba to alpha2;`
-	- `connect alpha2/Alpha2018_@alphapdb;` -- connect to alpha2 so we can create the oracle directory
+	- `connect alpha2/Alpha2018_@pdb1;` -- connect to alpha2 so we can create the oracle directory
 	- `create directory oracle as '/home/oracle';`
 	- `exit`
 
@@ -376,7 +376,7 @@ This lab supports the following use cases:
 ### **STEP 13**:  Import the data
 
 -	Import the data.  Run the following command in your terminal window.
-	- `impdp alpha2/Alpha2018_@alphapdb directory=oracle dumpfile=alpha.dmp remap_schema=alpha:alpha2`
+	- `impdp alpha2/Alpha2018_@pdb1 directory=oracle dumpfile=alpha.dmp remap_schema=alpha:alpha2`
 
 -	![](images/200/image62.png)
 
