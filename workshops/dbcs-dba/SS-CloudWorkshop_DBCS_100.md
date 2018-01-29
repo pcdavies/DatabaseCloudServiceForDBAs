@@ -41,7 +41,7 @@ The following steps will be done on the desktop of the WorkshopImage through VNC
 	![](images/SS-100/003.png)
 
 -	Install the Oracle Cloud Database Backup Module (previously downloaded from the [Oracle website](https://docs.oracle.com/en/cloud/paas/db-backup-cloud/csdbb/installing-oracle-database-cloud-backup-module.html#GUID-DA5B65A2-0A59-460E-8D2A-1E6E1F510A57)).  Open a terminal window and enter the following.  **Be sure to replace the identity domain and password placeholder with your own:**
-	- `/u01/app/oracle/product/12.2.0/dbhome_1/jdk/bin/java -jar /u01/OPCWorkshop/opc_install.jar -serviceName Storage -identityDomain <identity domain> -opcId cloud.admin -opcPass <cloud account password> -walletDir /u01/app/oracle/product/12.2.0/opc_wallet -libDir $ORACLE_HOME/lib -libPlatform linux64 -container oracle-data-storageg-1`
+	- `/u01/app/oracle/product/12.2.0/dbhome_1/jdk/bin/java -jar /home/oracle/opc_install.jar -serviceName Storage -identityDomain <identity domain> -opcId cloud.admin -opcPass <cloud account password> -walletDir /u01/app/oracle/product/12.2.0/opc_wallet -libDir $ORACLE_HOME/lib -libPlatform linux64 -container oracle-data-storageg-1`
 
 	![](images/SS-100/004.png)
 
