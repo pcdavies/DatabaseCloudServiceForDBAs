@@ -175,7 +175,7 @@ The following creates a new DBCS Enterprise instance with backup to cloud.  Use 
 ### **STEP 5**: Start VNC Viewer and log into the desktop
 
 -	Go back to your SSH session (or open a new one if you closed it) and start VNC Server.  You can adjust the geometry to match your screen.  You will be prompted to enter a password.  Do not use the password that we have been specifying in other places in this lab document.  **VNC is open to the internet.  Select your own secure password**.
-	- `vncserver -geometry 1280x1024`
+	- `vncserver -geometry 1280x720`
 
 	![](images/setup/041.png)
 
