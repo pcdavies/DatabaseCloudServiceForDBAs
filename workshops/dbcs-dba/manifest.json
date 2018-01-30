@@ -48,6 +48,13 @@
                 "labels": {"version": "Self-Service"}
             },
             {
+                "number": "10",
+                "filename": "Setup.md",
+                "title": "Setup Steps for Self Guided Labs",
+                "description": "Step-by-step setup instructions",
+                "labels": {"version": "Self-Service"}
+            },
+            {
                 "number": "100",
                 "filename": "SS-CloudWorkshop_DBCS_100.md",
                 "title": "Lab 100: Introduction",
