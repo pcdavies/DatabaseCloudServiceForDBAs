@@ -9,31 +9,71 @@
                 "number": "0",
                 "filename": "README.md",
                 "title": "README First",
-                "description": "Step-by-step workshop instructions"
+                "description": "Step-by-step workshop instructions",
+                "labels": {"version": "Instructor Led"}
             },
             {
                 "number": "100",
                 "filename": "CloudWorkshop_DBCS_100.md",
                 "title": "Lab 100: Introduction",
-                "description": "Create and access a Database Cloud Instance"
+                "description": "Create and access a Database Cloud Instance",
+                "labels": {"version": "Instructor Led"}
             },
             {
                 "number": "200",
                 "filename": "CloudWorkshop_DBCS_200.md",
                 "title": "Lab 200: Cloud Migration",
-                "description": "Explore some common use cases for moving your data from on-premise to the cloud"
+                "description": "Explore some common use cases for moving your data from on-premise to the cloud",
+                "labels": {"version": "Instructor Led"}
             },
             {
                 "number": "300",
                 "filename": "CloudWorkshop_DBCS_300.md",
                 "title": "Lab 300: DBCS Maintenance",
-                "description": "Perform some common DBA tasks such as setting up security access and scaling out your instance."
+                "description": "Perform some common DBA tasks such as setting up security access and scaling out your instance.",
+                "labels": {"version": "Instructor Led"}
             },
             {
                 "number": "400",
                 "filename": "CloudWorkshop_DBCS_400.md",
                 "title": "Lab 400: CLI/Curl Commands (Programatic Control of Services)",
-                "description": "Review 'get' and 'put' curl commands to monitor and control DBCS cloud services"
+                "description": "Review 'get' and 'put' curl commands to monitor and control DBCS cloud services",
+                "labels": {"version": "Instructor Led"}
+            },
+            {
+                "number": "0",
+                "filename": "SS-README.md",
+                "title": "README First",
+                "description": "Step-by-step workshop instructions",
+                "labels": {"version": "Self-Service"}
+            },
+            {
+                "number": "100",
+                "filename": "SS-CloudWorkshop_DBCS_100.md",
+                "title": "Lab 100: Introduction",
+                "description": "Create and access a Database Cloud Instance",
+                "labels": {"version": "Self-Service"}
+            },
+            {
+                "number": "200",
+                "filename": "SS-CloudWorkshop_DBCS_200.md",
+                "title": "Lab 200: Cloud Migration",
+                "description": "Explore some common use cases for moving your data from on-premise to the cloud",
+                "labels": {"version": "Self-Service"}
+            },
+            {
+                "number": "300",
+                "filename": "SS-CloudWorkshop_DBCS_300.md",
+                "title": "Lab 300: DBCS Maintenance",
+                "description": "Perform some common DBA tasks such as setting up security access and scaling out your instance.",
+                "labels": {"version": "Self-Service"}
+            },
+            {
+                "number": "400",
+                "filename": "SS-CloudWorkshop_DBCS_400.md",
+                "title": "Lab 400: CLI/Curl Commands (Programatic Control of Services)",
+                "description": "Review 'get' and 'put' curl commands to monitor and control DBCS cloud services",
+                "labels": {"version": "Self-Service"}
             }
         ]
     }
