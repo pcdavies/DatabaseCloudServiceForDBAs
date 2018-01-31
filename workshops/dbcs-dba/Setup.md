@@ -65,8 +65,25 @@ The following creates a new DBCS Enterprise instance with backup to cloud.  Use 
 
 	![](images/setup/016.png)
 
+### **STEP 2**: Download the Oracle Backup Module and the Adobe Yum Repository
 
-### **STEP 2**: Create ppk private key
+-	Go to the following site to download opc_installer.zip and save to your local download location:  `http://www.oracle.com/technetwork/database/availability/oracle-cloud-backup-2162729.html`
+
+	![](images/setup/056.png)
+
+	![](images/setup/057.png)
+
+-	Go to the following site and download the adobe repository: `https://get.adobe.com/flashplayer/`.  Do not select the default - select download for a different operating system (Linux 64 bit).
+
+	![](images/setup/003.1.png)
+
+-	Select the version YUM.
+
+	![](images/setup/004.1.png)
+
+	![](images/setup/005.1.png)
+
+### **STEP 3**: Create ppk private key
 
 -	Go to the database console and retrieve the IP address.  **Note that this lab was updated with new screen shots and the IP address noted below will not be consistent throughout**.  We will reference two images:  WorkshopImage (this one) and later a Alpha01A-DBCS instance and will call these out in the workshop documentation by name rather than by IP address.
 
@@ -92,6 +109,8 @@ The following creates a new DBCS Enterprise instance with backup to cloud.  Use 
 
 	![](images/setup/023.png)
 
+### **STEP 3**: Copy files to the WorkshopImage
+
 -	Open WinSCP (internet download) and log in to the IP address noted above from the Cloud Console with your private ppk key.
 
 	![](images/setup/024.png)
@@ -106,7 +125,7 @@ The following creates a new DBCS Enterprise instance with backup to cloud.  Use 
 
 	![](images/setup/027.png)
 
-### **STEP 3**: Log into your WorkshopImage and run install scripts
+### **STEP 4**: Log into your WorkshopImage and run install scripts
 
 -	Open Putty and log into the DBCS instance.
 
@@ -124,22 +143,23 @@ The following creates a new DBCS Enterprise instance with backup to cloud.  Use 
 
 ```
 sudo su -
+rpm -ivh /home/oracle/adobe-release-x86_64-1.0-1.noarch.rpm
 yum -y install git
 exit
 sudo su - oracle
 git clone https://github.com/pcdavies/DatabaseCloudServiceForDBAs.git
 mv /home/oracle/DatabaseCloudServiceForDBAs/workshops/dbcs-dba/install/install.zip .
 unzip install.zip
-/home/oracle/install/install.sh
+/home/oracle/install.sh
 exit
 sudo su -
 /home/oracle/yum.sh
 exit
 ```
 
-	![](images/setup/031.png)
+![](images/setup/031.png)
 
-### **STEP 4**: Setup Desktop
+### **STEP 5**: Start VNC Viewer and log into the desktop
 
 -	Log back into the Cloud Console and select Database Service.
 
@@ -157,9 +177,8 @@ exit
 
 	![](images/setup/040.png)
 
-### **STEP 5**: Start VNC Viewer and log into the desktop
-
--	Go back to your SSH session (or open a new one if you closed it) and start VNC Server.  You can adjust the geometry to match your screen.  You will be prompted to enter a password.  Do not use the password that we have been specifying in other places in this lab document.  **VNC is open to the internet.  Select your own secure password**.
+-	Go back to your SSH/Putty session (or open a new one if you closed it) and start VNC Server.  You can adjust the geometry to match your screen.  You will be prompted to enter a password.  Do not use the password that we have been specifying in other places in this lab document.  **VNC is open to the internet.  Select your own secure password**.  Be sure you are sudo su to oracle user.
+	- `sudo su - oracle`
 	- `vncserver -geometry 1280x720`
 
 	![](images/setup/041.png)
@@ -168,7 +187,7 @@ exit
 
 	![](images/setup/042.png)
 
--	You will see a prompt to log into root.  Cancel this.  This pops up from time to time, always cancel.
+-	This is the WorkshopImage desktop.  The background may be different across the screen shots.
 
 	![](images/setup/043.png)
 
@@ -180,8 +199,9 @@ exit
 
 ### **STEP 6**: Set up shortcut to SQLDeveloper and import connections
 
--	Right click on the desktop and create a new launcher on the desktop
-	- `/u01/app/oracle/product/12.2.0/dbhome_1/sqldeveloper/sqldeveloper/bin/sqldeveloper`
+-	Right click on the desktop and create a new launcher on the desktop.  Enter the Name and Command:
+	- **Name:** `SqlDeveloper`
+	- **Command:** `/u01/app/oracle/product/12.2.0/dbhome_1/sqldeveloper/sqldeveloper/bin/sqldeveloper`
 
 	![](images/setup/046.png)
 
@@ -210,27 +230,3 @@ exit
 	![](images/setup/054.png)
 
 	![](images/setup/055.png)
-
-### **STEP 6**: Download RMAN backup module and Adobe Flash yum repository.
-
--	Go to the following site to download opc_installer.zip:  `http://www.oracle.com/technetwork/database/availability/oracle-cloud-backup-2162729.html`
-
-	![](images/setup/001.1.png)
-
--	Go to the following site and download the adobe repository: `https://get.adobe.com/flashplayer/`.  Do not select the default - select download for a different operating system (Linux 64 bit).
-
-	![](images/setup/003.1.png)
-
--	Select the version YUM.
-
-	![](images/setup/004.1.png)
-
-	![](images/setup/005.1.png)
-
--	Log in as root and install the adobe rpm
-	- `sudo su -`
-	- `cd /home/oracle`
-	- `rpm -ivh adobe-release-x86_64-1.0-1.noarch.rpm`
-	- `yum -y install adobe-flash`
-
-	![](images/setup/032.png)
