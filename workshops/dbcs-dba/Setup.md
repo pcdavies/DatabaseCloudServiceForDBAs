@@ -66,23 +66,9 @@ The following creates a new DBCS Enterprise instance with backup to cloud.  Use 
 	![](images/setup/016.png)
 
 
-### **STEP 2**: Download Files and transfer to DBCS_WorkshopImage
+### **STEP 2**: Create ppk private key
 
--	Go to the following site to download opc_installer.zip:  `http://www.oracle.com/technetwork/database/availability/oracle-cloud-backup-2162729.html`
-
-	![](images/setup/001.1.png)
-
--	Go to the following site and download the adobe repository: `https://get.adobe.com/flashplayer/`.  Do not select the default - select download for a different operating system (Linux 64 bit).
-
-	![](images/setup/003.1.png)
-
--	Select the version YUM.
-
-	![](images/setup/004.1.png)
-
-	![](images/setup/005.1.png)
-
--	Go to the database console and retrieve the IP address.
+-	Go to the database console and retrieve the IP address.  **Note that this lab was updated with new screen shots and the IP address noted below will not be consistent throughout**.  We will reference two images:  WorkshopImage (this one) and later a Alpha01A-DBCS instance and will call these out in the workshop documentation by name rather than by IP address.
 
 	![](images/setup/017.png)
 
@@ -114,19 +100,19 @@ The following creates a new DBCS Enterprise instance with backup to cloud.  Use 
 
 	![](images/setup/025.png)
 
--	Drag the following files to the oracle folder.
+-	Drag the following files from your download location to the oracle folder.  First extract the sshkeybundle.zip file if you have not already done so.
 
 	![](images/setup/026.png)
 
 	![](images/setup/027.png)
 
-### **STEP 3**: Login and run install scripts
+### **STEP 3**: Log into your WorkshopImage and run install scripts
 
 -	Open Putty and log into the DBCS instance.
 
 	![](images/setup/028.png)
 
--	Select your SSH private key
+-	Select your SSH private privatekey.ppk key.
 
 	![](images/setup/029.png)
 
@@ -134,25 +120,24 @@ The following creates a new DBCS Enterprise instance with backup to cloud.  Use 
 
 	![](images/setup/030.png)
 
--	Switch to oracle user and unzip the install.zip file and then exit oracle login
-	- `sudo su - oracle`
-	- `unzip install.zip`
-	- `./install.sh`
-	- `exit`
+-	Install packages for desktop and VNC, and then install Oracle database objects (this will take a few minutes).  Enter the following:
+
+```
+sudo su -
+yum -y install git
+exit
+sudo su - oracle
+git clone https://github.com/pcdavies/DatabaseCloudServiceForDBAs.git
+mv /home/oracle/DatabaseCloudServiceForDBAs/workshops/dbcs-dba/install/install.zip .
+unzip install.zip
+/home/oracle/install/install.sh
+exit
+sudo su -
+/home/oracle/yum.sh
+exit
+```
 
 	![](images/setup/031.png)
-
--	Log in as root and install the adobe rpm
-	- `sudo su -`
-	- `cd /home/oracle`
-	- `rpm -ivh adobe-release-x86_64-1.0-1.noarch.rpm`
-
-	![](images/setup/032.png)
-
--	Install packages for desktop and VNC (this will take a few minutes).
-	- `./yum.sh`
-
-	![](images/setup/035.png)
 
 ### **STEP 4**: Setup Desktop
 
@@ -225,3 +210,27 @@ The following creates a new DBCS Enterprise instance with backup to cloud.  Use 
 	![](images/setup/054.png)
 
 	![](images/setup/055.png)
+
+### **STEP 6**: Download RMAN backup module and Adobe Flash yum repository.
+
+-	Go to the following site to download opc_installer.zip:  `http://www.oracle.com/technetwork/database/availability/oracle-cloud-backup-2162729.html`
+
+	![](images/setup/001.1.png)
+
+-	Go to the following site and download the adobe repository: `https://get.adobe.com/flashplayer/`.  Do not select the default - select download for a different operating system (Linux 64 bit).
+
+	![](images/setup/003.1.png)
+
+-	Select the version YUM.
+
+	![](images/setup/004.1.png)
+
+	![](images/setup/005.1.png)
+
+-	Log in as root and install the adobe rpm
+	- `sudo su -`
+	- `cd /home/oracle`
+	- `rpm -ivh adobe-release-x86_64-1.0-1.noarch.rpm`
+	- `yum -y install adobe-flash`
+
+	![](images/setup/032.png)
