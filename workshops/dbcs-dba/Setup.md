@@ -156,10 +156,15 @@ sudo su -
 /home/oracle/yum.sh
 exit
 ```
-
 ![](images/setup/031.png)
 
-### **STEP 5**: Start VNC Viewer and log into the desktop
+-	Start VNC Server.  You can optionally adjust the geometry to match your screen (eg: `vncserver -geometry 1280x720`).  You will be prompted to enter a password.  Do not use the password that we have been specifying in other places in this lab document.  **VNC is open to the internet.  Select your own secure password**.  Be sure you are sudo su to oracle user.
+	- `sudo su - oracle`
+	- `vncserver`
+
+	![](images/setup/041.png)
+
+### **STEP 5**: Open Port 5901 (VNC) and log into the desktop
 
 -	Log back into the Cloud Console and select Database Service.
 
@@ -176,10 +181,6 @@ exit
 -	Create rule.  Note you need to refresh your screen to see the new rule after selecting create.
 
 	![](images/setup/040.png)
-
--	Go back to your SSH/Putty session (or open a new one if you closed it) and start VNC Server.  You can adjust the geometry to match your screen.  You will be prompted to enter a password.  Do not use the password that we have been specifying in other places in this lab document.  **VNC is open to the internet.  Select your own secure password**.  Be sure you are sudo su to oracle user.
-	- `sudo su - oracle`
-	- `vncserver -geometry 1280x720`
 
 	![](images/setup/041.png)
 
