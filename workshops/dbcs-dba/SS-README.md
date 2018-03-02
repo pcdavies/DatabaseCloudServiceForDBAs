@@ -4,7 +4,7 @@
 
 - To log issues and view the lab guide source, go to the [github oracle](https://github.com/oracle/learning-library/tree/master/workshops/dbcs-dba) repository.
 
-- The lab guides are best viewed using the workshop's [GitHub Pages Website URL](https://oracle.github.io/learning-library/workshops/dbcs/) 
+- The lab guides are best viewed using the workshop's [GitHub Pages Website URL](https://oracle.github.io/learning-library/workshops/dbcs-dba/) 
 
 - Once you are viewing the workshop's gitHub page's website, you can see a list of Lab Guides at any time by clicking on the **Menu Icon**
 
